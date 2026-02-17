@@ -9,10 +9,10 @@ class AutomovilBuilder {
     this.motor = motor;
 
     // valores por defecto
-    this.color = "Blanco";
-    this.llantas = "Estándar";
-    this.sistemaSonido = "Básico";
-    this.interiores = "Tela";
+    this.color = "Blanco por defecto";
+    this.llantas = "Estándar por defecto";
+    this.sistemaSonido = "Básico por defecto";
+    this.interiores = "Tela por defecto";
     this.techoSolar = false;
     this.gps = false;
   }
