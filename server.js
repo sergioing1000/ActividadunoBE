@@ -7,6 +7,12 @@ const AutomovilBuilder = require("./models/automovilbuilder.js");
 const PlataformaFactory = require("./factories/PlataformaFactory.js");
 const NotificacionFactory = require("./factories/NotificacionFactory.js");
 
+
+const ChatRoomMediator = require("./domain/ChatRoomMediator.js");
+const User = require("./domain/User.js");
+const ChatService = require("./application/ChatService.js");
+const createChatRouter = require("./infrastructure/ChatController.js");
+
 const app = express();
 
 app.use(
@@ -16,6 +22,9 @@ app.use(
 );
 
 app.use(express.json());
+
+const mediator = new ChatRoomMediator();
+const chatService = new ChatService(mediator, User);
 
 app.post("/automoviles", (req, res) => {
   try {
@@ -71,6 +80,8 @@ app.post("/api/notificaciones", (req, res) => {
     });
   }
 });
+
+app.use("/api/chat", createChatRouter(chatService));
 
 const PORT = 3000;
 app.listen(PORT, () => {
